@@ -5,7 +5,21 @@
 > 版本更新：
 > 当前版本： 0.0.1
 
-## 环境变量设置
+## 快速开始
+> python 3.12
+> 未安装uv 请按照以下步骤安装， 已安装请忽略
+> uv 官网 https://docs.astral.sh/
+
+### macos / linux uv安装
+```shell
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+### windows uv安装
+```shell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+## 环境变量信息
 
 | 参数                        | 描述            | 默认值                | 是否必填 | 备注                                           |
 |---------------------------|---------------|--------------------|------|----------------------------------------------|
@@ -25,10 +39,65 @@
 > 以下以部署 fetch mcp 为例，将stdio转为 streamable_http mcp
 
 ```shell
-docker run 
-  -e PROXY_MCP_SERVER_CONFIG='{"mcpServers":{"fetch":{"command":"uvx","args": ["mcp-server-fetch"]}}}'  
-  nacos/nacos-mcp-router:latest
+docker run -e PROXY_MCP_SERVER_CONFIG='{"mcpServers":{"fetch":{"command":"uvx","args": ["mcp-server-fetch"]}}}'  
+  crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest
 ```
 
+### docker-compose 部署 （推荐使用此方式来实现快速部署）
+> 使用docker-compose 也可以同时部署多个代理mcp
+> 
+> 比如以下示例 我通过docker-compose 部署了3个代理mcp
+> 
+> feifei-proxy-fetch => 网页内容爬取 streamable_http mcp
+> 
+> feifei-proxy-bazi => 出生八字分析 streamable_http mcp
+> 
+> feifei-proxy-howtocook => 食谱分析 streamable_http mcp
 
-### docker-compose 部署
+```yml
+# docker-compose.yml
+version: '3.8'
+services:
+  feifei-proxy-fetch:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8001:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"fetch":{"command":"uvx","args": ["mcp-server-fetch"]}}}'
+
+  feifei-proxy-bazi:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8002:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"Bazi":{"command":"npx","args":["bazi-mcp"]}}}'
+
+  feifei-proxy-howtocook:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8003:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"howtocook-mcp":{"command":"npx","args":["-y","howtocook-mcp"]}}}'
+```
+
+docker-compose.yml配置完成后，执行部署命令以完成mcp服务启动
+```shell
+# 启动
+docker compose up -d
+
+# 部署成功后 通过
+docker compose ps 来查看容器启动状态
+```
+
+![部署成功展示](images/docker-compose-up.png)
+
+
+
+## 客户端接入
+> 这里以 [cherry stdio](https://www.cherry-ai.com/) 作为接入示例
+> 如果未安装，也可自行安装，或者在自己的cline, cursor中添加mcp server 完成使用
+
+![mcp server配置](images/cherry-studio-mcp-server-fetch.png)
+
+![mcp server测试](images/fetch-test.png)
+

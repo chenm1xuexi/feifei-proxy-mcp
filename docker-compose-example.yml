@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  feifei-proxy-fetch:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8001:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"fetch":{"command":"uvx","args": ["mcp-server-fetch"]}}}'
+
+  feifei-proxy-bazi:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8002:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"Bazi":{"command":"npx","args":["bazi-mcp"]}}}'
+
+  feifei-proxy-howtocook:
+    image: 'crpi-i8di4kksl3oe9ugm.cn-hangzhou.personal.cr.aliyuncs.com/feifei-ai/feifei-proxy-mcp:latest'
+    ports:
+      - "8003:8000"
+    environment:
+      PROXY_MCP_SERVER_CONFIG: '{"mcpServers":{"howtocook-mcp":{"command":"npx","args":["-y","howtocook-mcp"]}}}'
