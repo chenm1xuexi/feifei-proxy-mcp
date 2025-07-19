@@ -47,7 +47,6 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ## 容器化部署
 > 使用前 请保障当前机器已安装 docker 环境
 
-
 ### docker 命令行部署
 
 > 以下以部署 fetch mcp 为例，将stdio转为 streamable_http mcp
