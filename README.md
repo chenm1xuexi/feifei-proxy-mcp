@@ -1,6 +1,9 @@
-# MCP 传输类型转换服务
+<div style="text-align: center;">
+    <img src="images/proxy-mcp-logo.png" width="40%" />
+    <h1> MCP 传输类型转换服务 </h1>
+</div>
 
-![Logo](images/logo.png)
+<hr/>
 
 > 可以将现有的MCP类型为 stdio / sse 转换为 streamable_http传输类型的MCP
 > 
@@ -28,6 +31,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
+<hr/>
+
 ## 环境变量信息
 
 | 参数                        | 描述            | 默认值                | 是否必填 | 备注                                           |
@@ -37,7 +42,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 | `PROXY_MCP_SERVER_CONFIG` | mcp 服务器配置           | -                  | 是    | 要代理的mcp服务配置                                  |
 | `PROXY_MCP_PORT`          | 服务端口          | `8000`             | 否    | 代理mcp协议类型为 `sse` 或 `streamable_http` 时使用     |
 
-
+<hr/>
 
 ## 容器化部署
 > 使用前 请保障当前机器已安装 docker 环境
@@ -100,7 +105,7 @@ docker compose ps 来查看容器启动状态
 
 ![部署成功展示](images/docker-compose-up.png)
 
-
+<hr/>
 
 ## 客户端接入
 > 这里以 [cherry stdio](https://www.cherry-ai.com/) 作为接入示例
