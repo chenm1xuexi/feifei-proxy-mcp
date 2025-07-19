@@ -1,7 +1,7 @@
-<div style="text-align: center;">
+<center>
     <img src="images/proxy-mcp-logo.png" width="40%" />
     <h1> MCP 传输类型转换服务 </h1>
-</div>
+</center>
 
 <hr/>
 
