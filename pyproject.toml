@@ -1,0 +1,24 @@
+[project]
+name = "feifei-proxy-mcp"
+version = "0.0.1"
+description = "方便你快速将 stdio / see 转为 streamable_http 的 mcp服务"
+authors = [
+  {name = "xiaofeifei"},
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.116.1",
+    "mcp>=1.12.0",
+    "uvicorn>=0.35.0",
+]
+
+[project.scripts]
+feifei-proxy-mcp = "feifei_proxy_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = ["pyright>=1.1.389"]
