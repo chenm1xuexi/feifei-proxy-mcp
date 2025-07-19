@@ -6,15 +6,19 @@
 > 当前版本： 0.0.1
 
 ## 快速开始
-> python 3.12
+
+### 本地部署（如果无需本地部署调试，请跳过，直接到容器化部署）
+> python环境要求：python 3.12
+> 
 > 未安装uv 请按照以下步骤安装， 已安装请忽略
+> 
 > uv 官网 https://docs.astral.sh/
 
-### macos / linux uv安装
+#### macos / linux uv安装
 ```shell
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-### windows uv安装
+#### windows uv安装
 ```shell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
@@ -29,11 +33,11 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 | `PROXY_MCP_PORT`          | 服务端口          | `8000`             | 否    | 代理mcp协议类型为 `sse` 或 `streamable_http` 时使用     |
 
 
-## 必要安装
-> 使用前 请保障当前机器已安装了 docker 环境
-> 因为此模式采用docker 容器作为streamable_http 的 代理MCP服务
 
 ## 容器化部署
+> 使用前 请保障当前机器已安装 docker 环境
+
+
 ### docker 命令行部署
 
 > 以下以部署 fetch mcp 为例，将stdio转为 streamable_http mcp
